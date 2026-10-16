@@ -1,12 +1,13 @@
 {
   "name": "mmu-engine",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "type": "module",
+  "description": "Motor de simulación de MMU y algoritmos de reemplazo de páginas (OPT, FIFO, SC, LRU, LFU)",
+  "main": "src/engine.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node -e \"import('./src/core/generator.js').then(async g => { const p = await import('./src/core/parser.js'); const e = await import('./src/engine.js'); const txt = g.generarOperaciones('42', 10, 500); const inst = p.parsearInstrucciones(txt); const resOpt = e.ejecutarSimulacion(inst, 'OPT'); const resLru = e.ejecutarSimulacion(inst, 'LRU'); console.log('OPT time:', resOpt.metrics.simTime, 'LRU time:', resLru.metrics.simTime); })\""
   },
-  "keywords": [],
+  "keywords": ["mmu", "simulation", "paging"],
   "author": "",
   "license": "ISC"
 }
